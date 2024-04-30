@@ -6,7 +6,7 @@
 #    By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/24 18:48:10 by rmarin-j          #+#    #+#              #
-#    Updated: 2024/04/25 19:43:48 by rmarin-j         ###   ########.fr        #
+#    Updated: 2024/04/29 18:29:22 by rmarin-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = gcc
 HEADERS	:= -I$(MLX)
 SRCS	:= so_long.c \
 	GNL/get_next_line.c GNL/get_next_line_utils.c \
-	utils/utils_1.c
+	utils/utils_1.c utils/map_checks.c
 		
 OBJS	:= ${SRCS:.c=.o}
 all: $(NAME)

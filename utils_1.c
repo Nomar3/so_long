@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:32:42 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/04/25 19:44:08 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:23:54 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,18 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		n--;
 	}
 	return (0);
+}
+
+int	strlen2(char *argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (argv[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (i);
 }

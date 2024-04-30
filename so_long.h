@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:55:03 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/04/25 19:42:16 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/04/30 20:11:14 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,18 @@ char	*ft_strchr(char *str, int c);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *str);
 /*-----------so_long------------*/
-int		strlen2(char *argv);
+char	**create_map(char *argv, int lines);
+int		count_lines(char *argv);
+int		column_comp(char **map, int lines);
+void	error();
 /*-----------utils-----------*/
+int		strlen2(char *argv);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+/*-----------map_checks-----------*/
+int		map_checker(t_game *game);
+int		check_colec(t_game *game);
+int		check_char(t_game *game);
+int		check_ep(t_game *game);
+int		check_walls(t_game *game);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:54:05 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/04/25 19:46:14 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/04/30 20:32:20 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,21 @@ void	error()
 	write(2, "Error\n", 6);
 	exit(1);
 }
-
-int	column_comp(char **map)
+//mira que las columnas sean iguales en todas las filas
+int	column_comp(char **map, int lines)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	j = strlen2(map[i]);
-	while (map[i])
+	j = strlen2(map[0]);
+	while (i < lines)
 	{
 		if (strlen2(map[i]) != j)
-			return (0);
+			error();
 		i++;
 	}
 	return (j);
-}
-
-int	strlen2(char *argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-	{
-		if (argv[i] == '\n')
-			return (i);
-		i++;
-	}
-	return (i);
 }
 
 int	count_lines(char *argv)
@@ -73,7 +59,7 @@ char	**create_map(char *argv, int lines)
 	if (map == NULL)
 		return (0);
 	i = 0;
-	while (i <= lines)
+	while (i < lines)
 	{
 		map[i] = get_next_line(fd);
 		i++;
@@ -93,7 +79,12 @@ int	main(int argc, char **argv)
 	if (!game)
 		return (0);
 	game->lines = count_lines(argv[1]);
-	game->colum = column_comp(argv);
+	printf("lineas: %i\n", game->lines);
 	game->map = create_map(argv[1], game->lines);
+	game->colum = column_comp(game->map, game->lines);
+	printf("columnas total: %i\n", game->colum);
+	map_checker(game);
+	printf("mapa chekeado perita makinola\n");
 	return (0);
 }
+	//write (1, "entra1\n", 8);
