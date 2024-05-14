@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:54:05 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/04/30 20:32:20 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:08:00 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,20 @@ int	column_comp(char **map, int lines)
 
 int	count_lines(char *argv)
 {
-	int	fd;
-	int	i;
+	int		fd;
+	int		i;
+	char	*line;
 
 	fd = open(argv, O_RDONLY);
 	i = 0;
-	while (get_next_line(fd) != NULL)
+	line = get_next_line(fd);
+	free(line);
+	while (line)
+	{
+		line = get_next_line(fd);
+		free(line);
 		i++;
+	}
 	close(fd);
 	return (i);
 }
@@ -78,13 +85,23 @@ int	main(int argc, char **argv)
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (0);
+	game->count = 0;
 	game->lines = count_lines(argv[1]);
 	printf("lineas: %i\n", game->lines);
 	game->map = create_map(argv[1], game->lines);
 	game->colum = column_comp(game->map, game->lines);
 	printf("columnas total: %i\n", game->colum);
+	set_xy(game);
 	map_checker(game);
 	printf("mapa chekeado perita makinola\n");
+	game->mlx = mlx_init(game->colum * PIXEL, game->lines * PIXEL, "so_long", false);
+	game->image = malloc(sizeof(t_image));
+	if (!game->image)
+		return (0);
+	set_images(game);
+	map_print(game);
+	mlx_key_hook(game->mlx, &my_keyhook, game);
+	mlx_loop(game->mlx);
 	return (0);
 }
 	//write (1, "entra1\n", 8);
