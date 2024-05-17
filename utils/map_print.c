@@ -6,11 +6,31 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:34:23 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/05/14 18:00:07 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:16:42 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+static void	char_to_image(t_game *game, int i, int j)
+{
+	mlx_image_to_window(game->mlx, game->image->floor,
+		j * PIXEL, i * PIXEL);
+	if (game->map[i][j] == '1')
+		mlx_image_to_window(game->mlx, game->image->wall,
+			j * PIXEL, i * PIXEL);
+	if (game->map[i][j] == 'C')
+		mlx_image_to_window(game->mlx, game->image->colec,
+			j * PIXEL, i * PIXEL);
+	if (game->map[i][j] == 'E')
+		mlx_image_to_window(game->mlx, game->image->exit,
+			j * PIXEL, i * PIXEL);
+	if (game->map[i][j] == 'P')
+	{
+		game->pl_x = j;
+		game->pl_y = i;
+	}
+}
 
 void	map_print(t_game *game)
 {
@@ -24,24 +44,13 @@ void	map_print(t_game *game)
 		j = 0;
 		while (j < game->colum)
 		{
-			mlx_image_to_window(game->mlx, game->image->floor, j * PIXEL, i * PIXEL);
-			if (game->map[i][j] == '1')
-				mlx_image_to_window(game->mlx, game->image->wall, j * PIXEL, i * PIXEL);
-			if (game->map[i][j] == 'C')
-				mlx_image_to_window(game->mlx, game->image->colec, j * PIXEL, i * PIXEL);
-			if (game->map[i][j] == 'E')
-				mlx_image_to_window(game->mlx, game->image->exit, j * PIXEL, i * PIXEL);
-			if (game->map[i][j] == 'P')
-			{
-				game->pl_x = j;
-				game->pl_y = i;
-			}
+			char_to_image(game, i, j);
 			j++;
 		}
-		printf("%s\n", game->map[i]);
 		i++;
 	}
-	mlx_image_to_window(game->mlx, game->image->player, game->pl_x * PIXEL, game->pl_y * PIXEL);
+	mlx_image_to_window(game->mlx, game->image->player,
+		game->pl_x * PIXEL, game->pl_y * PIXEL);
 }
 
 static void	fill(char **map, int lines, int colum)
@@ -64,7 +73,6 @@ int	floodfill(t_game *game)
 	int		j;
 
 	cmap = copymap(game);
-	printf("player x: %i\nplayer y: %i\n", game->pl_x, game->pl_y);
 	fill(cmap, game->pl_x, game->pl_y);
 	i = 0;
 	j = 0;

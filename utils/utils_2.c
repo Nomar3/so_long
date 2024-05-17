@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:20:01 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/05/14 18:04:16 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:59:28 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ mlx_texture_t	*set_img_finish(t_game *game)
 {
 	mlx_texture_t	*a_finish;
 
-	a_finish = mlx_load_png("./png/finish.png");
+	a_finish = mlx_load_png("./textures/finish.png");
 	if (!a_finish)
 		error();
 	game->image->finish = mlx_texture_to_image(game->mlx, a_finish);

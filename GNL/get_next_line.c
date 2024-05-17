@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:25:16 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/04/25 16:15:53 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:08:29 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,3 @@ char	*get_next_line(int fd)
 	storage = new_storage(storage, line);
 	return (line);
 }
-
-/* int main ()
-{
-	int fd;
-	fd = open("texto.txt", O_RDONLY);
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
-} */

@@ -6,18 +6,18 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:54:05 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/05/14 18:08:00 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:03:19 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error()
+void	error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);
 }
-//mira que las columnas sean iguales en todas las filas
+
 int	column_comp(char **map, int lines)
 {
 	int	i;
@@ -87,14 +87,12 @@ int	main(int argc, char **argv)
 		return (0);
 	game->count = 0;
 	game->lines = count_lines(argv[1]);
-	printf("lineas: %i\n", game->lines);
 	game->map = create_map(argv[1], game->lines);
 	game->colum = column_comp(game->map, game->lines);
-	printf("columnas total: %i\n", game->colum);
 	set_xy(game);
 	map_checker(game);
-	printf("mapa chekeado perita makinola\n");
-	game->mlx = mlx_init(game->colum * PIXEL, game->lines * PIXEL, "so_long", false);
+	game->mlx = mlx_init(game->colum * PIXEL, game->lines * PIXEL,
+			"so_long", false);
 	game->image = malloc(sizeof(t_image));
 	if (!game->image)
 		return (0);

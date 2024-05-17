@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 16:08:08 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/05/14 15:37:31 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:08:11 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,8 @@ int	format_print(char s, va_list args)
 		count = putchar_c(va_arg(args, int));
 	else if (s == 's')
 		count = putstr_c(va_arg(args, char *));
-/* 	else if (s == 'p')
-		count = putptr_c(va_arg(args, unsigned long)); */
 	else if (s == 'd' || s == 'i')
 		count = putnbr_c(va_arg(args, int));
-	/* else if (s == 'u')
-		count = putunsint_c(va_arg(args, unsigned int), 1);
-	else if (s == 'x')
-		count = puthexa_min_c(va_arg(args, int));
-	else if (s == 'X')
-		count = puthexa_may_c(va_arg(args, int)); */
 	else if (s == '%')
 		count = putchar_c('%');
 	return (count);

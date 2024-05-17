@@ -6,7 +6,7 @@
 /*   By: rmarin-j <rmarin-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:55:03 by rmarin-j          #+#    #+#             */
-/*   Updated: 2024/05/14 17:58:58 by rmarin-j         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:06:02 by rmarin-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <errno.h>
 # include <string.h>
 # include "./MLX42/include/MLX42/MLX42.h"
-#  ifndef BUFFER_SIZE
-#   define BUFFER_SIZE 1
-#  endif
-#  define PIXEL 64
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+# define PIXEL 64
 
 typedef struct s_image
 {
@@ -68,10 +68,11 @@ int				putchar_c(char c);
 int				putstr_c(char *s);
 int				putnbr_c(int n);
 /*-----------so_long------------*/
+void			my_keyhook(mlx_key_data_t keydata, void *param);
 char			**create_map(char *argv, int lines);
 int				count_lines(char *argv);
 int				column_comp(char **map, int lines);
-void			error();
+void			error(void);
 /*-----------utils_1-----------*/
 int				strlen2(char *argv);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -88,16 +89,14 @@ int				check_colec(t_game *game);
 int				check_char(t_game *game);
 int				check_ep(t_game *game);
 int				check_walls(t_game *game);
+/*------------map_print-----------*/
+void			map_print(t_game *game);
+int				floodfill(t_game *game);
 /*-----------set_images------------*/
 mlx_texture_t	*set_img_exit(t_game *game);
 mlx_texture_t	*set_img_player(t_game *game);
 mlx_texture_t	*set_img_colec(t_game *game);
 mlx_texture_t	*set_img_floor(t_game *game);
 mlx_texture_t	*set_img_wall(t_game *game);
-/*------------map_print-----------*/
-void	map_print(t_game *game);
-int		floodfill(t_game *game);
-
-void	my_keyhook(mlx_key_data_t keydata, void *param);
 
 #endif
